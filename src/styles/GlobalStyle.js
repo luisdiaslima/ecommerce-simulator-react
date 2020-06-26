@@ -7,32 +7,35 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     outline: none;
-    box-sizing: border-box;
+    box-sizing: content-box;
+
   }
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background: ${colors.primaryDarkColor};
-    color: ${colors.primaryDarkColor}
+    transition: 700ms;
+    background: var(--background);
+    -webkit-font-smoothing: antialiased;
   }
 
-  html, body, #root {
-    height: 100%;
-  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Ubuntu', sans-serif;
+    color: var(--title-color);
+}
 
-  button {
-    cursor: pointer;
-    background: ${colors.primaryColor};
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-weight: 700;
-    }
+  :root {
+    --title-color: #3a275e;
+    --primary-color: #34cb79;
+    --background: #f0f0f5;
+    --form: white;
+    --text: black;
+    --li-back: #e1faec;
+    --li-border: #34cb79;
+    --bodysearch: #d4d4db;
+}
 
   a {
     text-decoration: none;
-    color: ${colors.primaryColor};
   }
 
   ul {
@@ -47,13 +50,4 @@ export default createGlobalStyle`
     background: ${colors.errorColor}
   }
 
-`;
-
-export const Container = styled.section`
-  max-width: 560px;
-  background: #fff;
-  margin: 30px auto;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 `;
