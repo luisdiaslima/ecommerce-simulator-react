@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Background from '../../img/logo.svg';
-import Login from '../../img/cesta.svg';
+import Login from '../../img/log-in.svg';
 import Search from '../../img/search.svg';
 
 export const Container = styled.div`
@@ -35,17 +35,21 @@ export const Content = styled.div`
       width: 54px;
     }
 
-    > a {
+    > div {
       display: flex;
-      color: var(--title-color);
-      font-weight: 700;
-    }
-    > a span {
-      margin-right: 16px;
-      display: flex;
-      background-image: url(${Login});
-      width: 20px;
-      height: 20px;
+      > a {
+        display: flex;
+        padding: 10px;
+        color: var(--title-color);
+        font-weight: 700;
+      }
+      > a span {
+        margin-right: 16px;
+        display: flex;
+        background-image: url(${Login});
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 `;

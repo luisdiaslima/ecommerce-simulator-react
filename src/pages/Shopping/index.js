@@ -1,5 +1,7 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Container, Form, FieldGroup, Field, ItemsGrid } from './style';
 import Modal from '../Modal';
 import Logo from '../../img/passaro.svg';
@@ -12,6 +14,8 @@ import ervilha from '../../img/ervilha.svg';
 import abacate from '../../img/abacate.svg';
 
 export default function Shop(props) {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   const [states, setState] = React.useState([]);
   const [cities, setCity] = React.useState([]);
   const [items, setItem] = React.useState([]);
@@ -61,10 +65,15 @@ export default function Shop(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setCheck(true);
-    setTimeout(() => {
-      window.location = '/';
-    }, 3000);
+
+    if (isLoggedIn) {
+      setCheck(true);
+      setTimeout(() => {
+        window.location = '/';
+      }, 3000);
+    } else {
+      toast.warning('Você precisa ter uma conta para concluir sua cesta');
+    }
   };
 
   return (
@@ -160,7 +169,7 @@ export default function Shop(props) {
           </ItemsGrid>
         </fieldset>
 
-        <button onClick={handleSubmit}>Map</button>
+        <button onClick={handleSubmit}>Concluir Cesta</button>
       </Form>
     </Container>
   );

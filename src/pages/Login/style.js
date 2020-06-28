@@ -46,8 +46,13 @@ export const Form = styled.form`
   max-width: 730px;
   margin: 80px auto;
 
-  > h1 {
-    font-size: 36px;
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    > h1 {
+      font-size: 36px;
+    }
   }
 
   > fieldset {
@@ -85,12 +90,11 @@ export const Form = styled.form`
   }
 
   > button {
-    cursor: pointer;
     width: 260px;
     height: 56px;
     background-color: var(--primary-color);
     border-radius: 8px;
-
+    cursor: pointer;
     color: white;
     font-weight: bold;
     font-size: 16px;
