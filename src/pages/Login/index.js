@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { get } from 'lodash';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
-import { Container, Form, FieldGroup, Field } from './style';
+import { Container, Form, FieldGroup, Field, LoaderBar } from './style';
 import Modal from '../Modal';
 import Logo from '../../img/passaro.svg';
 import api from '../../config/api';
@@ -37,6 +37,9 @@ export default function Login(props) {
 
   return (
     <Container>
+      <LoaderBar>
+        <div />
+      </LoaderBar>
       <Modal check={check} />
       <header>
         <img src={Logo} />
