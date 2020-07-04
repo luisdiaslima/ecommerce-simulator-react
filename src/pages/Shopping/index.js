@@ -1,9 +1,14 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Container, Form, FieldGroup, Field, ItemsGrid } from './style';
 import Modal from '../Modal';
+import Payment from '../ModalPayment';
 import Logo from '../../img/passaro.svg';
 import api from '../../config/api';
 import mel from '../../img/mel.svg';
@@ -12,14 +17,20 @@ import cenoura from '../../img/cenoura.svg';
 import banana from '../../img/banana.svg';
 import ervilha from '../../img/ervilha.svg';
 import abacate from '../../img/abacate.svg';
+import * as actions from '../../store/modules/modal/actions';
 
-export default function Shop(props) {
+export default function Shop() {
+  const dispatch = useDispatch();
+
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+  const isChecked = useSelector((state) => state.modal.isChecked);
+  const inPayment = useSelector((state) => state.modal.inPayment);
 
   const [states, setState] = React.useState([]);
   const [cities, setCity] = React.useState([]);
   const [items, setItem] = React.useState([]);
-  const [check, setCheck] = React.useState(false);
+
   React.useEffect(() => {
     async function getData() {
       const response = await api.get('/api/v1/localidades/estados/');
@@ -65,12 +76,10 @@ export default function Shop(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(process.env);
 
     if (isLoggedIn) {
-      setCheck(true);
-      setTimeout(() => {
-        window.location = '/';
-      }, 3000);
+      dispatch(actions.paymentRequest());
     } else {
       toast.warning('Você precisa ter uma conta para concluir sua cesta');
     }
@@ -78,7 +87,8 @@ export default function Shop(props) {
 
   return (
     <Container>
-      <Modal check={check} />
+      <Modal check={isChecked} />
+      <Payment inPayment={inPayment} />
       <header>
         <img src={Logo} />
         <Link to="/">
@@ -110,7 +120,7 @@ export default function Shop(props) {
               <label htmlFor="state">State</label>
               <select name="uf" onChange={getCities}>
                 <option value="">Selecione um estado</option>
-                {states.map((state, index) => (
+                {states.map((state) => (
                   <option value={state.id} key={state.id}>
                     {state.nome}
                   </option>
@@ -122,7 +132,7 @@ export default function Shop(props) {
               <label>Cidade</label>
               <select name="city">
                 <option value="">Selecione uma cidade</option>
-                {cities.map((city, index) => (
+                {cities.map((city) => (
                   <option value={city.id} key={city.id}>
                     {city.nome}
                   </option>

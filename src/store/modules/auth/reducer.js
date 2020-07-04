@@ -6,6 +6,8 @@ const initialState = {
   token: false,
   user: {},
   isLoading: false,
+  isChecked: false,
+  inPayment: false,
 };
 
 export default function (state = initialState, action) {

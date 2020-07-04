@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from './style';
@@ -9,7 +10,7 @@ export default function ModalCheck({ check }) {
     <Modal>
       <div>
         <img src={checkImg} />
-        <h1>Cadastro concluído</h1>
+        <h1>Pagamento concluído</h1>
       </div>
     </Modal>
   );

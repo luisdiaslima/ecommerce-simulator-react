@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from '../../services/axios';
 import { Container, Cards } from './style';
 import Logo from '../../img/passaro.svg';
-import mel from '../../img/mel_p.jfif';
 
 export default function Home() {
   const [products, setProducts] = React.useState([]);
@@ -14,6 +13,7 @@ export default function Home() {
     }
     getData();
   }, []);
+
   return (
     <Container>
       <header>
@@ -26,7 +26,7 @@ export default function Home() {
 
       <Cards>
         {products.map((product, index) => (
-          <div key={String(product.id)}>
+          <div key={product.id}>
             <img src={product.productImage} />
             <h1>{product.name}</h1>
             <h3>{product.type}</h3>
