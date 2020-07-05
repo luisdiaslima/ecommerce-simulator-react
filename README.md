@@ -42,8 +42,7 @@ Esta aplicação está sendo essencial para expandir meus conhecimentos na área
 
 - Aqui está
 
-<a href="https://gyazo.com/deb25519f29e74f53b7a0fdde58d9146"><img src="https://i.gyazo.com/deb25519f29e74f53b7a0fdde58d9146.gif" alt="Image from Gyazo" width="1600"/></a>
-<a href="https://gyazo.com/1b0ae90973b5e5dd665cba9518953ec1"><img src="https://i.gyazo.com/1b0ae90973b5e5dd665cba9518953ec1.gif" alt="Image from Gyazo" width="1600"/></a>
+![Alt text](/arqgit.gif)
 
 <a id="como-usar"></a>
 
