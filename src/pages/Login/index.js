@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { get } from 'lodash';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
-import { Container, Form, FieldGroup, Field, LoaderBar } from './style';
+import { Container, Form, FieldGroup, Field } from './style';
+import LoaderHead from '../../components/Loader';
 import Modal from '../Modal';
 import Logo from '../../img/passaro.svg';
 import api from '../../config/api';
@@ -17,6 +18,7 @@ export default function Login(props) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [check, setCheck] = React.useState(false);
+  const [isLoading, setLoading] = React.useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     let formErrors = false;
@@ -32,14 +34,13 @@ export default function Login(props) {
     }
 
     if (formErrors) return;
+    setLoading(true);
     dispatch(actions.loginRequest({ email, password, prevPath }));
   };
 
   return (
     <Container>
-      <LoaderBar>
-        <div />
-      </LoaderBar>
+      <LoaderHead isLoading={isLoading} />
       <Modal check={check} />
       <header>
         <img src={Logo} />

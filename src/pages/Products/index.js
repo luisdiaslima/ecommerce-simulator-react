@@ -1,21 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { set } from 'lodash';
 import axios from '../../services/axios';
 import { Container, Cards } from './style';
+import LoaderHead from '../../components/Loader';
+
 import Logo from '../../img/passaro.svg';
 
 export default function Home() {
   const [products, setProducts] = React.useState([]);
+  const [isLoading, setLoading] = React.useState(false);
+
   React.useEffect(() => {
     async function getData() {
+      setLoading(true);
       const response = await axios.get('/product');
       setProducts(response.data);
+      setLoading(false);
     }
     getData();
   }, []);
 
   return (
     <Container>
+      <LoaderHead isLoading={isLoading} />
+
       <header>
         <img src={Logo} />
         <Link to="/">

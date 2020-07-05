@@ -6,9 +6,15 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { Container, Form, FieldGroup, Field, ItemsGrid } from './style';
-import Modal from '../Modal';
-import Payment from '../ModalPayment';
+import {
+  Container,
+  Form,
+  FieldGroup,
+  Field,
+  ItemsGrid,
+  MyModal,
+} from './style';
+import Payment from '../Payment';
 import Logo from '../../img/passaro.svg';
 import api from '../../config/api';
 import mel from '../../img/mel.svg';
@@ -18,14 +24,19 @@ import banana from '../../img/banana.svg';
 import ervilha from '../../img/ervilha.svg';
 import abacate from '../../img/abacate.svg';
 import * as actions from '../../store/modules/modal/actions';
+import LoaderHead from '../../components/Loader';
+import ModalCheck from '../Modal';
+
+MyModal.setAppElement('#root');
 
 export default function Shop() {
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-
+  const isLoading = useSelector((state) => state.modal.isChecked);
   const isChecked = useSelector((state) => state.modal.isChecked);
-  const inPayment = useSelector((state) => state.modal.inPayment);
+
+  const [modalIsOpen, setIsOpen] = React.useState(false);
 
   const [states, setState] = React.useState([]);
   const [cities, setCity] = React.useState([]);
@@ -79,7 +90,7 @@ export default function Shop() {
     console.log(process.env);
 
     if (isLoggedIn) {
-      dispatch(actions.paymentRequest());
+      setIsOpen(true);
     } else {
       toast.warning('Você precisa ter uma conta para concluir sua cesta');
     }
@@ -87,8 +98,18 @@ export default function Shop() {
 
   return (
     <Container>
-      <Modal check={isChecked} />
-      <Payment inPayment={inPayment} />
+      <LoaderHead isLoading={isLoading} />
+      <ModalCheck check={isChecked} />
+      <MyModal isOpen={modalIsOpen} onRequestClose={() => setIsOpen(false)}>
+        <div>
+          <a onClick={() => setIsOpen(false)}>
+            <span />
+            Voltar
+          </a>
+        </div>
+        <Payment />
+      </MyModal>
+
       <header>
         <img src={Logo} />
         <Link to="/">

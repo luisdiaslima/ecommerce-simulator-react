@@ -1,5 +1,7 @@
 import styled from 'styled-components';
+import Modal from 'react-modal';
 import Arrow from '../../img/arrow-left.svg';
+import XClose from '../../img/x.svg';
 
 export const Container = styled.div`
   width: 100%;
@@ -171,5 +173,29 @@ export const ItemsGrid = styled.div`
     background-color: red;
     background: var(--li-back);
     border: 2px solid var(--li-border);
+  }
+`;
+
+export const MyModal = styled(Modal)`
+
+  }
+  > div {
+     margin-top: 120px;
+    > a {
+      margin-left: 100px;
+      color: var(--title-color);
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      > span {
+        background-image: url(${Arrow});
+        margin-right: 16px;
+        display: flex;
+        width: 20px;
+        height: 20px;
+      }
+    }
   }
 `;
