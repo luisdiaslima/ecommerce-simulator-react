@@ -31,7 +31,8 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias
 - [Redux](https://redux.js.org/)
 - [ReactJS](https://reactjs.org/)
 - [Styled-Components](https://styled-components.com/docs)
--[Stripe](https://stripe.com/docs/api)
+- [Stripe](https://stripe.com/docs/api)
+
 
 ## :star: Relevante
 Esta aplicação está sendo essencial para expandir meus conhecimentos na área de vendas sob a internet.
